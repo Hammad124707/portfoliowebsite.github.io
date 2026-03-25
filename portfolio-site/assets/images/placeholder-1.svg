@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7c5cff" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#32d0ff" stop-opacity="0.75"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="#0f1a31"/>
+  <rect x="40" y="40" width="1520" height="820" rx="36" fill="url(#bg)" opacity="0.22"/>
+  <rect x="110" y="130" width="1380" height="640" rx="28" fill="#0b1220" opacity="0.55"/>
+  <g fill="#eaf0ff" opacity="0.92">
+    <text x="140" y="230" font-family="ui-sans-serif, system-ui, Segoe UI" font-size="56" font-weight="800">
+      Placeholder image
+    </text>
+    <text x="140" y="300" font-family="ui-sans-serif, system-ui, Segoe UI" font-size="28" font-weight="600" opacity="0.85">
+      Drop your own photos in assets/images/ and update content.js
+    </text>
+    <text x="140" y="390" font-family="ui-sans-serif, system-ui, Segoe UI" font-size="26" opacity="0.8">
+      Project: Smart Sensor Node (ESP32)
+    </text>
+  </g>
+  <g opacity="0.55">
+    <rect x="140" y="460" width="560" height="250" rx="22" fill="#101f3d" stroke="#ffffff" stroke-opacity="0.18"/>
+    <rect x="740" y="460" width="660" height="250" rx="22" fill="#101f3d" stroke="#ffffff" stroke-opacity="0.18"/>
+    <circle cx="240" cy="585" r="70" fill="#32d0ff" opacity="0.35"/>
+    <rect x="350" y="540" width="300" height="20" rx="10" fill="#eaf0ff" opacity="0.25"/>
+    <rect x="350" y="575" width="260" height="20" rx="10" fill="#eaf0ff" opacity="0.18"/>
+  </g>
+</svg>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hammad — Portfolio</title>
+    <meta name="description" content="Portfolio: projects, learning, and writing." />
+    <link rel="stylesheet" href="./styles.css?v=20260325-1130" />
+  </head>
+  <body data-page="home">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">H</div>
+          <div class="brand-text">
+            <div class="brand-name" id="brandName">Hammad</div>
+            <div class="brand-subtitle" id="brandSubtitle">Computer Engineer</div>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Primary">
+          <a href="./index.html" aria-current="page">Home</a>
+          <a href="./past-projects.html">Past projects</a>
+          <a href="./current-projects.html">Current projects</a>
+          <a href="./learning.html">Learning</a>
+          <a href="./about.html">About</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container" id="main">
+      <section class="section home-compact">
+        <div class="section-head">
+          <h2 id="heroTitle">Hi, I’m Hammad.</h2>
+          <p class="section-subtitle" id="heroLead">
+            I build hardware + software projects and write about what I learn.
+          </p>
+        </div>
+
+        <div class="home-center">
+          <div class="carousel" aria-label="Highlights carousel">
+            <div class="carousel-viewport">
+              <div class="carousel-track" id="homeCarouselTrack"></div>
+            </div>
+            <div class="carousel-controls">
+              <div class="carousel-buttons">
+                <button class="icon-btn" id="carouselPrev" type="button">Prev</button>
+                <button class="icon-btn" id="carouselNext" type="button">Next</button>
+              </div>
+              <div class="dots" id="carouselDots" aria-label="Slide indicators"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-meta" id="heroMeta"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="muted" id="footerText">© <span id="year"></span> Hammad</div>
+        <div class="muted" style="text-align:right">Made with enthusiasm</div>
+      </div>
+    </footer>
+
+    <script src="./content.js?v=20260325-1130"></script>
+    <script src="./app.js?v=20260325-1130" defer></script>
+  </body>
+</html>
