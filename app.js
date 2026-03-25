@@ -331,7 +331,7 @@
     nextBtn.addEventListener("click", () => go(idx + 1));
 
     // simple auto-advance, no heavy transitions
-    const intervalMs = 3500;
+    const intervalMs = 2400;
     let timerId = window.setInterval(() => go(idx + 1), intervalMs);
     const pause = () => {
       if (timerId) window.clearInterval(timerId);
