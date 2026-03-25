@@ -273,7 +273,8 @@
       });
     }
 
-    // Keep it lightweight and short
+  
+  // Keep it lightweight and short
     const finalSlides = slides.slice(0, 12);
 
     if (!finalSlides.length) {
@@ -289,7 +290,7 @@
       .map((s) => {
         const mediaHtml =
           s.media.kind === "video"
-            ? `<video controls preload="metadata" src="${escapeHtml(s.media.src)}" aria-label="${escapeHtml(
+            ? `<video autoplay muted loop playsinline src="${escapeHtml(s.media.src)}" aria-label="${escapeHtml(
                 s.media.title ?? "video"
               )}"></video>`
             : `<img loading="lazy" src="${escapeHtml(s.media.src)}" alt="${escapeHtml(
