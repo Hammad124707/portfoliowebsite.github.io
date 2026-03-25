@@ -592,7 +592,7 @@ a:hover { text-decoration: underline; }
 @media (max-width: 900px) {
   .hero-split {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 20px;
     text-align: center;
   }
   .hero-pitch {
