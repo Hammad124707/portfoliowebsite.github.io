@@ -7,7 +7,7 @@ window.PORTFOLIO = {
   profile: {
     name: "Hammad",
     subtitle: "Computer Engineer",
-    heroTitle: "Hi, I’m Hammad.",
+    heroTitle: "Hi, I’m Ham.",
     heroLead:
       "I build hardware + software projects and write about what I learn.",
     meta: ["Embedded", "Web", "Robotics", "Computer Vision"],
