@@ -467,15 +467,18 @@ a:hover { text-decoration: underline; }
   background: rgba(11, 11, 15, 0.02);
   border-bottom: 1px solid var(--border);
 }
+
+/* We changed 'cover' to 'contain' below so videos don't stretch! */
 .slide-media img,
 .slide-media video {
   width: 100%;
   height: auto;
   display: block;
   max-height: 420px;
-  object-fit: cover;
+  object-fit: contain; 
   background: #000;
 }
+
 .slide-info {
   padding: 12px 14px;
   display: flex;
@@ -518,3 +521,89 @@ a:hover { text-decoration: underline; }
   background: rgba(11, 11, 15, 0.08);
 }
 .dot.active { background: rgba(255, 77, 166, 0.85); border-color: rgba(255, 77, 166, 0.55); }
+
+/* =========================================
+   NEW SPLIT HERO LAYOUT (Home Page)
+   ========================================= */
+.hero-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal halves */
+  gap: 60px;
+  align-items: center; /* Centers the slider with the text */
+  min-height: 65vh;
+  margin-top: 40px;
+}
+
+.hero-pitch {
+  font-size: 1.1rem;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-top: -10px;
+  margin-bottom: 30px;
+  max-width: 90%;
+}
+
+/* Stylish Buttons */
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: #ffffff;
+  border: 2px solid var(--accent);
+}
+
+.btn-primary:hover {
+  background-color: transparent;
+  color: var(--accent);
+}
+
+.btn-outline {
+  border: 2px solid var(--border);
+  color: var(--text);
+}
+
+.btn-outline:hover {
+  border-color: var(--text);
+}
+
+/* Contain the slider and make it look like a sleek device */
+.hero-visual .carousel {
+  max-width: 100%;
+  border-radius: var(--radius);
+  box-shadow: 0 20px 40px var(--shadow); /* Adds a subtle floating shadow */
+  background: var(--panel);
+  border: 1px solid var(--border);
+}
+
+/* Mobile Responsiveness: Stack them if screen is small (phones) */
+@media (max-width: 900px) {
+  .hero-split {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+  .hero-pitch {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-actions {
+    justify-content: center;
+  }
+  .hero-meta {
+    justify-content: center;
+  }
+}
