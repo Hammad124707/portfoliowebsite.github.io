@@ -26,7 +26,7 @@ window.PORTFOLIO = {
       tags: ["ESP32", "C/C++", "BLE", "IoT"],
       media: {
         images: [
-          { src: "./assets/images/placeholder-1.svg", alt: "Sensor node on desk" },
+          { src: "./assets/images/fourbitadder.jpg", alt: "Sensor node on desk" },
         ],
         videos: [],
       },
