@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Hammad — Portfolio</title>
     <meta name="description" content="Portfolio: projects, learning, and writing." />
-    <link rel="stylesheet" href="./styles.css?v=20260325-1130" />
+    <link rel="stylesheet" href="./styles.css" />
   </head>
   <body data-page="home">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -31,15 +31,26 @@
     </header>
 
     <main class="container" id="main">
-      <section class="section home-compact">
-        <div class="section-head">
+      <section class="section hero-split">
+        <div class="hero-text">
           <h2 id="heroTitle">Hi, I’m Hammad.</h2>
           <p class="section-subtitle" id="heroLead">
             I build hardware + software projects and write about what I learn.
           </p>
+          
+          <p class="hero-pitch">
+            I'm a computer engineer focused on embedded systems, hardware design, and robotics. I love bridging the gap between physical circuits and efficient code.
+          </p>
+          
+          <div class="hero-meta" id="heroMeta"></div>
+          
+          <div class="hero-actions">
+            <a href="./past-projects.html" class="btn btn-primary">See My Work</a>
+            <a href="./about.html" class="btn btn-outline">More About Me</a>
+          </div>
         </div>
 
-        <div class="home-center">
+        <div class="hero-visual">
           <div class="carousel" aria-label="Highlights carousel">
             <div class="carousel-viewport">
               <div class="carousel-track" id="homeCarouselTrack"></div>
@@ -53,8 +64,6 @@
             </div>
           </div>
         </div>
-
-        <div class="hero-meta" id="heroMeta"></div>
       </section>
     </main>
 
