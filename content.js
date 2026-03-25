@@ -42,7 +42,7 @@ window.PORTFOLIO = {
       tags: ["FPGA", "Verilog", "UART", "VGA"],
       media: {
         images: [
-          { src: "./assets/videos/mthmotor.mp4", alt: "FPGA board demo" },
+          { src: "./assets/videos/mthmotor.mp4.mp4", alt: "FPGA board demo" },
           { src: "./assets/images/placeholder-3.svg", alt: "VGA output" },
         ],
         videos: [],
