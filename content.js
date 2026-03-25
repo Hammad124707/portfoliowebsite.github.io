@@ -52,6 +52,45 @@ window.PORTFOLIO = {
       },
       links: [{ label: "Slides", href: "#" }],
     },
+     {
+      title: "My Third Project",
+      summary: "A short description of what this project does and what I learned.",
+      tags: ["Tag1", "Tag2"],
+      media: {
+        images: [
+          // Add your picture here, or leave the images list empty to use a video!
+          { src: "./assets/images/placeholder-1.svg", alt: "Project 3 picture" },
+        ],
+        videos: [],
+      },
+      links: [{ label: "GitHub", href: "https://github.com/" }],
+    },
+    // --- PROJECT 4 (Placeholder) ---
+    {
+      title: "My Fourth Project",
+      summary: "A short description of what this project does and what I learned.",
+      tags: ["Tag1", "Tag2"],
+      media: {
+        images: [
+          { src: "./assets/images/placeholder-2.svg", alt: "Project 4 picture" },
+        ],
+        videos: [],
+      },
+      links: [{ label: "GitHub", href: "https://github.com/" }],
+    },
+    // --- PROJECT 5 (Placeholder) ---
+    {
+      title: "My Fifth Project",
+      summary: "A short description of what this project does and what I learned.",
+      tags: ["Tag1", "Tag2"],
+      media: {
+        images: [
+          { src: "./assets/images/placeholder-3.svg", alt: "Project 5 picture" },
+        ],
+        videos: [],
+      },
+      links: [{ label: "GitHub", href: "https://github.com/" }],
+    },
   ],
 
   currentProjects: [
