@@ -528,7 +528,7 @@ a:hover { text-decoration: underline; }
 .hero-split {
   display: grid;
   grid-template-columns: 1fr 1fr; /* Two equal halves */
-  gap: 60px;
+  gap: 65px;
   align-items: center; /* Centers the slider with the text */
   min-height: 65vh;
   margin-top: 40px;
@@ -581,7 +581,7 @@ a:hover { text-decoration: underline; }
 
 /* Contain the slider and make it look like a sleek device */
 .hero-visual .carousel {
-  max-width: 100%;
+  max-width: 80%;
   border-radius: var(--radius);
   box-shadow: 0 20px 40px var(--shadow); /* Adds a subtle floating shadow */
   background: var(--panel);
@@ -592,7 +592,7 @@ a:hover { text-decoration: underline; }
 @media (max-width: 900px) {
   .hero-split {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 40px;
     text-align: center;
   }
   .hero-pitch {
