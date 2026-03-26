@@ -678,3 +678,35 @@ a:hover { text-decoration: underline; }
 .hero-actions {
   margin-top: 8px;
 }
+/* Header buttons under profile picture */
+.header-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  justify-content: center;
+}
+
+.header-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f5f5f5;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 1px solid #e0e0e0;
+}
+
+.header-icon-btn:hover {
+  background: #e8e8e8;
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+.header-icon-btn svg {
+  width: 16px;
+  height: 16px;
+}
