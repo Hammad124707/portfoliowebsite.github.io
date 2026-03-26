@@ -19,6 +19,7 @@ window.PORTFOLIO = {
   },
 
   pastProjects: [
+    // --- PROJECT 1 ---
     {
       title: "Smart Sensor Node (ESP32)",
       summary:
@@ -35,24 +36,22 @@ window.PORTFOLIO = {
         { label: "Write-up", href: "#learning" },
       ],
     },
+    // --- PROJECT 2 ---
     {
       title: "FPGA UART + VGA Demo",
       summary:
         "UART RX/TX with a minimal VGA text renderer; learned timing constraints and testing with simulation.",
       tags: ["FPGA", "Verilog", "UART", "VGA"],
       media: {
-        images: [
-          
-        ],
+        images: [],
         videos: [
            { src: "./assets/videos/mthmotor.mp4.mp4", title: "FPGA board demo" },
-
-           
         ],
       },
       links: [{ label: "Slides", href: "#" }],
     },
-     {
+    // --- PROJECT 3 (Placeholder) ---
+    {
       title: "My Third Project",
       summary: "A short description of what this project does and what I learned.",
       tags: ["Tag1", "Tag2"],
