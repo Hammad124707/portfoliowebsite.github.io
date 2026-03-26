@@ -527,9 +527,10 @@ a:hover { text-decoration: underline; }
    ========================================= */
 .hero-split {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Two equal halves */
-  gap: 60px;
-  align-items: center; /* Centers the slider with the text */
+  /* Gives the text more room, shrinks the slider column */
+  grid-template-columns: 1.3fr 0.7fr; 
+  gap: 40px;
+  align-items: center; 
   min-height: 65vh;
   margin-top: 40px;
 }
@@ -579,11 +580,18 @@ a:hover { text-decoration: underline; }
   border-color: var(--text);
 }
 
+/* This pushes the slider all the way to the right side */
+.hero-visual {
+  display: flex;
+  justify-content: flex-end; 
+}
+
 /* Contain the slider and make it look like a sleek device */
 .hero-visual .carousel {
-  max-width: 100%;
+  width: 100%;
+  max-width: 380px; /* <--- THIS SHRINKS IT A LOT! */
   border-radius: var(--radius);
-  box-shadow: 0 20px 40px var(--shadow); /* Adds a subtle floating shadow */
+  box-shadow: 0 20px 40px var(--shadow); 
   background: var(--panel);
   border: 1px solid var(--border);
 }
@@ -605,5 +613,8 @@ a:hover { text-decoration: underline; }
   }
   .hero-meta {
     justify-content: center;
+  }
+  .hero-visual {
+    justify-content: center; /* Centers it on mobile */
   }
 }
