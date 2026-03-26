@@ -1,12 +1,16 @@
 :root {
   --bg: #ffffff;
   --panel: #ffffff;
-  --panel-2: #fff7fb;
+  --panel-2: #f8f9fa; /* neutral off-white/gray */
   --text: #0b0b0f;
   --muted: rgba(11, 11, 15, 0.62);
   --border: rgba(11, 11, 15, 0.10);
   --shadow: rgba(11, 11, 15, 0.10);
-  --accent: #ff4da6; /* pink */
+  --shadow-lg: rgba(11, 11, 15, 0.15);
+  /* The pink accent is removed. I've chosen a professional muted blue/gray as the new accent. 
+     This color is only used for very subtle interactive highlights. 
+     You can change it below to a neutral gray like #0b0b0f to make it truly black and white. */
+  --accent: #5c677d; /* a muted engineering blue/gray for subtle interactivity. Change this to #0b0b0f for pure B&W. */
   --accent-2: #111827; /* almost black */
   --good: #1ee3a6;
   --bad: #ff5171;
@@ -21,31 +25,15 @@ body {
   margin: 0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
   color: var(--text);
-  background:
-    radial-gradient(900px 520px at 10% 0%, rgba(255, 77, 166, 0.16), transparent 60%),
-    radial-gradient(900px 520px at 90% 10%, rgba(0, 0, 0, 0.05), transparent 55%),
-    var(--bg);
+  background: var(--bg); /* clean white background, no pink gradients */
   line-height: 1.45;
-}
-
-/* Doodles overlay (reliable on white backgrounds) */
-body {
   position: relative;
 }
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image: var(--doodle, none);
-  background-repeat: repeat;
-  background-size: 720px 420px;
-  background-position: 0 0;
-  opacity: 0.95;
-}
 
-/* Keep all real content above the doodle overlay */
+/* Doodles overlay is removed completely */
+body::before { display: none; }
+
+/* Keep all real content on top */
 body > * {
   position: relative;
   z-index: 1;
@@ -67,8 +55,6 @@ body[data-build]::after {
   color: rgba(17, 24, 39, 0.75);
 }
 
-:root { --doodle: none; }
-
 a { color: inherit; text-decoration: none; }
 a:hover { text-decoration: underline; }
 
@@ -89,13 +75,35 @@ a:hover { text-decoration: underline; }
 }
 .skip-link:focus { left: 12px; z-index: 1000; }
 
+/* =========================================
+   FLOATING HEADER & Brand Styling (Floating Toolbar)
+   ========================================= */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(255, 255, 255, 0.82);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border);
+  background: transparent; /* Makes header background float and transparent */
+  border-bottom: none; /* Removes the horizontal line distraction */
+  padding: 10px 0; /* Simpler header padding */
+}
+
+/* The picture and name next to Home link in floating header */
+.brand-pic-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 750;
+  font-size: 1.1rem;
+}
+
+.brand-pic {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%; /* Makes the profile picture circular */
+  object-fit: cover;
+  border: 2px solid var(--bg); /* clean separation from background */
+  box-shadow: 0 5px 15px var(--shadow); /* subtle floating shadow for picture */
+  background: var(--bg); /* fallback if picture doesn't load */
 }
 
 .header-inner {
@@ -103,54 +111,46 @@ a:hover { text-decoration: underline; }
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 14px 0;
+  padding: 8px 0; /* simple header padding */
+  pointer-events: none; /* let clicks go through transparent background */
 }
+.header-inner > * { pointer-events: auto; } /* let brand and nav items be clicked */
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-width: 200px;
+.brand-name {
+  color: var(--text);
+  letter-spacing: 0.2px;
 }
-.brand-mark {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(135deg, rgba(17, 24, 39, 0.95), rgba(255, 77, 166, 0.85));
-  font-weight: 800;
-  box-shadow: 0 10px 30px rgba(255, 77, 166, 0.18);
-}
-.brand-name { font-weight: 750; letter-spacing: 0.2px; }
-.brand-subtitle { color: var(--muted); font-size: 13px; }
 
 .nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 6px;
   justify-content: flex-end;
+  pointer-events: auto;
 }
 .nav a {
-  padding: 8px 10px;
+  padding: 8px 12px;
   border-radius: 999px;
   border: 1px solid transparent;
   color: var(--muted);
+  font-weight: 600;
+  font-size: 0.95rem;
 }
+/* Active nav link style for a professional, black-and-white site */
 .nav a[aria-current="page"] {
   color: var(--text);
-  border-color: rgba(255, 77, 166, 0.35);
-  background: rgba(255, 77, 166, 0.08);
+  border-color: var(--border);
+  background: rgba(11, 11, 15, 0.05); /* very subtle black tint for active link */
 }
 .nav a:hover {
   text-decoration: none;
   color: var(--text);
   border-color: var(--border);
-  background: rgba(255, 77, 166, 0.14);
+  background: rgba(11, 11, 15, 0.03); /* very subtle hover */
 }
 
 .section { padding: 44px 0; }
-.section-hero { padding-top: 34px; }
+.section-hero { padding-top: 20px; } /* simpler padding for split hero layout */
 .section-head { margin-bottom: 18px; }
 .section-head h2 { margin: 0; font-size: 26px; letter-spacing: 0.2px; }
 .section-subtitle { margin: 6px 0 0; color: var(--muted); max-width: 70ch; }
@@ -167,7 +167,7 @@ a:hover { text-decoration: underline; }
 .hero-meta { margin-top: 14px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 10px; }
 .hero-meta .meta-item {
   border: 1px solid var(--border);
-  background: rgba(11, 11, 15, 0.03);
+  background: var(--panel-2); /* neutral light gray for professional tag styles */
   border-radius: 999px;
   padding: 6px 10px;
   font-size: 13px;
@@ -175,7 +175,7 @@ a:hover { text-decoration: underline; }
 
 .hero-card {
   border: 1px solid var(--border);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 247, 251, 0.75));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(248, 249, 2fa, 0.85)); /* clean neutral light gradient, no pink glows */
   box-shadow: 0 18px 45px var(--shadow);
   border-radius: var(--radius);
   padding: 14px;
@@ -184,24 +184,75 @@ a:hover { text-decoration: underline; }
 .hero-card-title { font-weight: 700; letter-spacing: 0.2px; margin-bottom: 10px; }
 .hero-card-body { color: var(--muted); font-size: 14px; }
 
-.button {
+/* =========================================
+   PROFESSIONAL BUTTONS (re-styled from pink)
+   ========================================= */
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 10px 14px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: linear-gradient(135deg, rgba(255, 77, 166, 0.95), rgba(255, 77, 166, 0.80));
-  color: #ffffff;
-  font-weight: 700;
-  text-decoration: none;
 }
-.button:hover { filter: brightness(1.04); text-decoration: none; }
-.button-secondary {
+
+.btn-primary {
+  /* No pink gradient. Clean black button with white text. */
+  background: var(--accent-2); /* almost black */
+  color: #ffffff;
+  border: 2px solid var(--accent-2);
+}
+
+.btn-primary:hover {
+  background: transparent;
+  color: var(--accent-2);
+}
+
+.btn-outline {
+  /* Clean outlined button. No pink accent color is used here. */
+  border: 2px solid var(--border);
+  color: var(--text);
+  background: transparent;
+}
+
+.btn-outline:hover {
+  border-color: var(--accent-2); /* subtlety: changing border on hover, not color. Professional! */
+  background: rgba(11, 11, 15, 0.03); /* subtle hover */
+}
+
+/* Secondary button (like for 'Write-up' or internal mini links) uses neutral muted styles */
+.btn-secondary {
+  border: 1px solid var(--border);
   background: rgba(11, 11, 15, 0.03);
   color: var(--text);
+  border-radius: 12px;
+  padding: 8px 10px;
+  font-size: 13px;
+  user-select: none;
 }
+.btn-secondary:hover { background: rgba(11, 11, 15, 0.05); }
+
+.mini-link {
+  color: var(--muted);
+  font-size: 13px;
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(11, 11, 15, 0.03);
+  text-decoration: none;
+}
+.mini-link:hover { color: var(--text); text-decoration: none; }
 
 .grid {
   display: grid;
@@ -216,7 +267,7 @@ a:hover { text-decoration: underline; }
 }
 .home-block {
   border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.70);
+  background: rgba(255, 255, 255, 0.85); /* clean white background */
   border-radius: var(--radius);
   padding: 14px;
 }
@@ -228,21 +279,11 @@ a:hover { text-decoration: underline; }
   margin-bottom: 12px;
 }
 .home-block-head h3 { margin: 0; }
-.mini-link {
-  color: var(--muted);
-  font-size: 13px;
-  border: 1px solid var(--border);
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: rgba(11, 11, 15, 0.03);
-  text-decoration: none;
-}
-.mini-link:hover { color: var(--text); text-decoration: none; }
 
 .card {
   grid-column: span 6;
   border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.90); /* clean white background, no pink glows in card background gradients in card.Media etc. in card grid styles */
   border-radius: var(--radius);
   overflow: clip;
   box-shadow: 0 18px 45px var(--shadow);
@@ -306,9 +347,8 @@ a:hover { text-decoration: underline; }
   color: var(--text);
   outline: none;
 }
-.input::placeholder { color: rgba(170, 183, 223, 0.65); }
 .input::placeholder { color: rgba(11, 11, 15, 0.45); }
-.input:focus { border-color: rgba(255, 77, 166, 0.7); box-shadow: 0 0 0 4px rgba(255, 77, 166, 0.14); }
+.input:focus { border-color: rgba(11, 11, 15, 0.4); box-shadow: 0 0 0 4px rgba(11, 11, 15, 0.06); }
 
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .chip {
@@ -321,10 +361,11 @@ a:hover { text-decoration: underline; }
   font-size: 13px;
   user-select: none;
 }
+/* tag chip active state uses neutral gray accent from root vars. No pink is used. */
 .chip[aria-pressed="true"] {
   color: var(--text);
-  border-color: rgba(255, 77, 166, 0.55);
-  background: rgba(255, 77, 166, 0.10);
+  border-color: rgba(11, 11, 15, 0.3); /* subtly changing border on hover, not color. Professional! */
+  background: rgba(11, 11, 15, 0.08); /* subtle black tint for active link */
 }
 
 .articles {
@@ -335,7 +376,7 @@ a:hover { text-decoration: underline; }
 .article {
   grid-column: span 12;
   border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.90);
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: 0 18px 45px var(--shadow);
@@ -370,7 +411,7 @@ a:hover { text-decoration: underline; }
 .about-card {
   grid-column: span 4;
   border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.90);
   border-radius: var(--radius);
   padding: 14px;
   box-shadow: 0 18px 45px var(--shadow);
@@ -429,20 +470,20 @@ a:hover { text-decoration: underline; }
 @media (max-width: 520px) {
   .media-grid { grid-template-columns: 1fr; }
   .brand { min-width: 0; }
+  
+  /* Mobile header simplification for picture grouping */
+  .header-inner { flex-direction: column; gap: 10px; align-items: flex-start; }
+  .brand-pic-group { width: 100%; justify-content: flex-start; }
+  .nav { width: 100%; justify-content: flex-start; gap: 4px; }
 }
 
 /* Home carousel */
 .home-compact { padding: 20px 0 34px; }
-.home-center {
-  display: grid;
-  place-items: center;
-  padding: 10px 0 6px;
-}
 .carousel {
   width: min(920px, 100%);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.90);
   box-shadow: 0 18px 45px var(--shadow);
   overflow: hidden;
 }
@@ -468,7 +509,7 @@ a:hover { text-decoration: underline; }
   border-bottom: 1px solid var(--border);
 }
 
-/* We changed 'cover' to 'contain' below so videos don't stretch! */
+/* Videos don't stretch with object-fit: contain */
 .slide-media img,
 .slide-media video {
   width: 100%;
@@ -520,7 +561,11 @@ a:hover { text-decoration: underline; }
   border: 1px solid var(--border);
   background: rgba(11, 11, 15, 0.08);
 }
-.dot.active { background: rgba(255, 77, 166, 0.85); border-color: rgba(255, 77, 166, 0.55); }
+/* active dot state for black and white site uses subtle neutral gray accents. No pink is used. */
+.dot.active {
+  background: rgba(11, 11, 15, 0.15); /* subtle black tint for active dot */
+  border-color: rgba(11, 11, 15, 0.06); /* subtle border color change for professional look */
+}
 
 /* =========================================
    NEW SPLIT HERO LAYOUT (Home Page)
@@ -532,7 +577,7 @@ a:hover { text-decoration: underline; }
   gap: 40px;
   align-items: center; 
   min-height: 65vh;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 .hero-pitch {
@@ -542,42 +587,6 @@ a:hover { text-decoration: underline; }
   margin-top: -10px;
   margin-bottom: 30px;
   max-width: 90%;
-}
-
-/* Stylish Buttons */
-.hero-actions {
-  display: flex;
-  gap: 16px;
-  margin-top: 20px;
-}
-
-.btn {
-  padding: 12px 24px;
-  border-radius: var(--radius-sm);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: all 0.2s ease;
-}
-
-.btn-primary {
-  background-color: var(--accent);
-  color: #ffffff;
-  border: 2px solid var(--accent);
-}
-
-.btn-primary:hover {
-  background-color: transparent;
-  color: var(--accent);
-}
-
-.btn-outline {
-  border: 2px solid var(--border);
-  color: var(--text);
-}
-
-.btn-outline:hover {
-  border-color: var(--text);
 }
 
 /* This pushes the slider all the way to the right side */
