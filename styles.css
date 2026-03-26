@@ -627,3 +627,54 @@ a:hover { text-decoration: underline; }
     justify-content: center; /* Centers it on mobile */
   }
 }
+/* NEW BUTTON STYLES - Add this at the end of your CSS file */
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  background: #f5f5f5;
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  border: 1px solid #e0e0e0;
+}
+
+.btn-icon:hover {
+  background: #e8e8e8;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.btn-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Hide the old elements */
+.hero-linkboxes {
+  display: none;
+}
+
+#heroMeta {
+  display: none;
+}
+
+/* Adjust spacing for hero-text */
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hero-pitch {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.hero-actions {
+  margin-top: 8px;
+}
