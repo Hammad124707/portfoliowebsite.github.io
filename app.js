@@ -352,6 +352,107 @@
     renderDots();
     go(0);
   };
+  // Initialize second carousel
+const initSecondCarousel = () => {
+  const track = document.getElementById("secondCarouselTrack");
+  const dots = document.getElementById("secondCarouselDots");
+  const prevBtn = document.getElementById("secondCarouselPrev");
+  const nextBtn = document.getElementById("secondCarouselNext");
+  if (!track || !dots || !prevBtn || !nextBtn) return;
+
+  // Create slides for second carousel (you can customize these)
+  const slides = [];
+  
+  // Add your past projects
+  for (const p of data.pastProjects ?? []) {
+    const media = pickFirstMedia(p.media);
+    if (!media) continue;
+    slides.push({
+      type: "Past Project",
+      title: p.title ?? "",
+      href: "./past-projects.html",
+      media,
+    });
+  }
+
+  const finalSlides = slides.slice(0, 4);
+
+  if (!finalSlides.length) {
+    track.innerHTML = `<div class="slide"><div class="slide-info"><div><h3 class="slide-title">Add projects to see more</h3></div><div class="slide-type">Edit content.js</div></div></div>`;
+    dots.innerHTML = "";
+    prevBtn.disabled = true;
+    nextBtn.disabled = true;
+    return;
+  }
+
+  track.innerHTML = finalSlides
+    .map((s) => {
+      const mediaHtml =
+        s.media.kind === "video"
+          ? `<video controls preload="metadata" autoplay muted loop playsinline src="${escapeHtml(s.media.src)}" aria-label="${escapeHtml(
+              s.media.title ?? "video"
+            )}"></video>`
+          : `<img loading="lazy" src="${escapeHtml(s.media.src)}" alt="${escapeHtml(
+              s.media.alt ?? ""
+            )}" />`;
+
+      return `
+        <article class="slide">
+          <a class="slide-media" href="${escapeHtml(s.href)}" aria-label="${escapeHtml(
+        s.type + ": " + s.title
+      )}">
+            ${mediaHtml}
+          </a>
+          <div class="slide-info">
+            <h3 class="slide-title">${escapeHtml(s.title)}</h3>
+            <div class="slide-type">${escapeHtml(s.type)}</div>
+          </div>
+        </article>
+      `;
+    })
+    .join("");
+
+  let idx = 0;
+
+  const renderDots = () => {
+    dots.innerHTML = finalSlides
+      .map((_, i) => `<span class="dot ${i === idx ? "active" : ""}" aria-hidden="true"></span>`)
+      .join("");
+  };
+
+  const go = (next) => {
+    idx = (next + finalSlides.length) % finalSlides.length;
+    track.style.transform = `translateX(${-idx * 100}%)`;
+    renderDots();
+  };
+
+  prevBtn.addEventListener("click", () => go(idx - 1));
+  nextBtn.addEventListener("click", () => go(idx + 1));
+
+  const intervalMs = 3500;
+  let timerId = window.setInterval(() => go(idx + 1), intervalMs);
+  const pause = () => {
+    if (timerId) window.clearInterval(timerId);
+    timerId = 0;
+  };
+  const resume = () => {
+    if (!timerId) timerId = window.setInterval(() => go(idx + 1), intervalMs);
+  };
+
+  const carousel = track.closest(".carousel");
+  (carousel ?? track).addEventListener("mouseenter", pause);
+  (carousel ?? track).addEventListener("mouseleave", resume);
+  prevBtn.addEventListener("click", pause);
+  nextBtn.addEventListener("click", pause);
+  prevBtn.addEventListener("blur", resume);
+  nextBtn.addEventListener("blur", resume);
+
+  renderDots();
+  go(0);
+};
+
+// Call the second carousel
+initSecondCarousel();
 
   const initAbout = () => {
     const about = data.about ?? {};
