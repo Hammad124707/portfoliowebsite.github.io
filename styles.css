@@ -524,3 +524,11 @@ a:hover { text-decoration: underline; }
     max-width: 100%;
   }
 }
+body:not([data-page="home"]) .brand-pic-group {
+  display: none !important;
+}
+
+/* 3. Keep the navigation menu aligned to the right when the name/face is hidden */
+body:not([data-page="home"]) .header-inner {
+  justify-content: flex-end;
+}
