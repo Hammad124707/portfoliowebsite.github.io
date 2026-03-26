@@ -7,10 +7,9 @@ window.PORTFOLIO = {
   profile: {
     name: "Hammad",
     subtitle: "Computer Engineer",
-    heroTitle: "Hi, I’m Ham.",
-    heroLead:
-      "I build hardware + software projects and write about what I learn.",
-    meta: ["Embedded", "Web", "Robotics", "Computer Vision"],
+    heroTitle: "Computer Engineer",
+    heroLead: "I build hardware + software projects and write about what I learn.",
+    resumeHref: "./assets/resume.pdf",
     quickLinks: [
       { label: "GitHub", href: "https://github.com/" },
       { label: "LinkedIn", href: "https://www.linkedin.com/" },
@@ -57,7 +56,6 @@ window.PORTFOLIO = {
       tags: ["Tag1", "Tag2"],
       media: {
         images: [
-          // Add your picture here, or leave the images list empty to use a video!
           { src: "./assets/images/placeholder-1.svg", alt: "Project 3 picture" },
         ],
         videos: [],
@@ -156,7 +154,7 @@ window.PORTFOLIO = {
 
   about: {
     bio: [
-      "I’m a computer engineer interested in building reliable systems across hardware and software.",
+      "I'm a computer engineer interested in building reliable systems across hardware and software.",
       "I like projects that combine embedded + signal processing + practical UI.",
     ],
     skills: [
