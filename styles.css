@@ -97,13 +97,17 @@ a:hover { text-decoration: underline; }
 }
 
 .brand-pic {
-  width: 80px;
-  height: 80px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%; /* Makes the profile picture circular */
   object-fit: cover;
   border: 2px solid var(--bg); /* clean separation from background */
   box-shadow: 0 5px 15px var(--shadow); /* subtle floating shadow for picture */
   background: var(--bg); /* fallback if picture doesn't load */
+}
+.brand-pic:hover {
+  /* Bounces slightly when you hover over it */
+  transform: scale(1.08) rotate(2deg);
 }
 
 .header-inner {
