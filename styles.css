@@ -456,6 +456,32 @@ a:hover { text-decoration: underline; }
     grid-column: span 12;
   }
 }
+/* =========================================
+   CARD MEDIA - Fixes enlarged images/videos
+   ========================================= */
+.card .media {
+  width: 100%;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  background: rgba(11, 11, 15, 0.02);
+}
+
+.card .media img,
+.card .media video {
+  width: 100%;          /* Forces media to shrink to the card's width */
+  height: auto;         /* Maintains aspect ratio */
+  max-height: 250px;    /* Prevents portrait images from getting too tall */
+  object-fit: contain;  /* Ensures the whole image/video is visible */
+  display: block;
+  background: #000;     /* Adds a black background for letterboxed media */
+}
+
+/* If a project has multiple media items */
+.card .media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 2px;
+}
 
 @media (max-width: 520px) {
   .header-inner {
