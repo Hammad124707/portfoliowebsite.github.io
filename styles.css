@@ -527,6 +527,42 @@ a:hover { text-decoration: underline; }
 body:not([data-page="home"]) .brand-pic-group {
   display: none !important;
 }
+/* =========================================
+   MEDIA SIZING FIXES (Projects & Learning)
+   ========================================= */
+.card .media,
+.article .media {
+  width: 100%;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  background: rgba(11, 11, 15, 0.02);
+}
+
+.card .media img,
+.card .media video,
+.article .media img,
+.article .media video {
+  width: 100%;          /* Shrinks media to fit the container */
+  height: auto;         /* Maintains aspect ratio */
+  max-height: 250px;    /* Prevents them from getting extremely tall */
+  object-fit: contain;  /* Shows the whole image/video */
+  display: block;
+  background: #000;     /* Clean black background for letterboxing */
+}
+
+
+/* =========================================
+   HIDE SUBPAGE BRANDING (Face & Name)
+   ========================================= */
+/* Hides profile pic & name on all pages EXCEPT the home page */
+body:not([data-page="home"]) .brand-pic-group {
+  display: none !important;
+}
+
+/* Keeps the navigation menu neatly aligned to the right */
+body:not([data-page="home"]) .header-inner {
+  justify-content: flex-end;
+}
 
 /* 3. Keep the navigation menu aligned to the right when the name/face is hidden */
 body:not([data-page="home"]) .header-inner {
