@@ -598,7 +598,8 @@ a:hover { text-decoration: underline; }
 /* Contain the slider and make it look like a sleek device */
 .hero-visual .carousel {
   width: 100%;
-  max-width: 380px; /* <--- THIS SHRINKS IT A LOT! */
+  max-width: 380px; 
+  max-height: 320px;/* <--- THIS SHRINKS IT A LOT! */
   border-radius: var(--radius);
   box-shadow: 0 20px 40px var(--shadow); 
   background: var(--panel);
@@ -735,4 +736,10 @@ a:hover { text-decoration: underline; }
 .header-btn svg {
   width: 16px;
   height: 16px;
+}
+
+/* Make slideshow shorter */
+.slide-media img,
+.slide-media video {
+  max-height: 160px !important;
 }
