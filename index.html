@@ -13,9 +13,10 @@
           <img class="brand-pic" src="./assets/images/placeholder-profile.svg" alt="Hammad" />
           <div class="brand-details">
             <div class="brand-name">Hammad</div>
-            <p class="brand-bio">Computer Engineer building hardware + software systems.</p>
+            <p class="hero-pitch">Computer Engineer building hardware + software systems.</p>
           </div>
         </div>
+
         <nav class="nav">
           <a href="./index.html" aria-current="page">Home</a>
           <a href="./past-projects.html">Projects</a>
@@ -25,7 +26,7 @@
       </div>
     </header>
 
-    <main class="container">
+    <main class="container" id="main">
       <section class="hero-split">
         <div class="hero-left">
           <div class="link-boxes">
@@ -37,7 +38,7 @@
             </a>
             <a href="./assets/resume.pdf" download class="link-box resume-btn">
               <span>Resume</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
             </a>
           </div>
         </div>
@@ -47,17 +48,21 @@
             <div class="mini-label">Featured Projects</div>
             <div class="carousel">
               <div class="carousel-viewport">
-                <div class="carousel-track" id="projectTrack"></div>
+                <div class="carousel-track" id="homeCarouselTrack"></div>
               </div>
-              <div class="carousel-footer"><div class="dots" id="projectDots"></div></div>
+              <div class="carousel-controls">
+                <div class="dots" id="carouselDots"></div>
+              </div>
             </div>
 
             <div class="mini-label">Recent Learning</div>
             <div class="carousel">
               <div class="carousel-viewport">
-                <div class="carousel-track" id="learningTrack"></div>
+                <div class="carousel-track" id="learningCarouselTrack"></div>
               </div>
-              <div class="carousel-footer"><div class="dots" id="learningDots"></div></div>
+              <div class="carousel-controls">
+                <div class="dots" id="learningDots"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -65,7 +70,9 @@
     </main>
 
     <footer class="site-footer">
-      <div class="container"><p class="muted">© <span id="year"></span> Hammad</p></div>
+      <div class="container footer-inner">
+        <div class="muted">© <span id="year"></span> Hammad</div>
+      </div>
     </footer>
 
     <script src="./content.js"></script>
