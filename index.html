@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body data-page="home">
-    <header class="site-header floating-header">
+    <header class="site-header">
       <div class="container header-inner">
         <div class="brand-pic-group">
           <img class="brand-pic" src="./assets/images/placeholder-profile.svg" alt="Hammad" />
@@ -46,7 +46,7 @@
         <div class="hero-visual">
           <div class="slider-stack">
             <div class="mini-label">Featured Projects</div>
-            <div class="carousel" id="projectCarousel">
+            <div class="carousel">
               <div class="carousel-viewport">
                 <div class="carousel-track" id="homeCarouselTrack"></div>
               </div>
@@ -56,7 +56,7 @@
             </div>
 
             <div class="mini-label">Recent Learning</div>
-            <div class="carousel" id="learningCarousel">
+            <div class="carousel">
               <div class="carousel-viewport">
                 <div class="carousel-track" id="learningCarouselTrack"></div>
               </div>
@@ -68,6 +68,12 @@
         </div>
       </section>
     </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="muted">© <span id="year"></span> Hammad</div>
+      </div>
+    </footer>
 
     <script src="./content.js"></script>
     <script src="./app.js"></script>
