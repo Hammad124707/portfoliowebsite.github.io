@@ -1,629 +1,69 @@
 :root {
   --bg: #ffffff;
-  --panel: #ffffff;
-  --panel-2: #f8f9fa; /* neutral off-white/gray */
-  --text: #0b0b0f;
-  --muted: rgba(11, 11, 15, 0.62);
-  --border: rgba(11, 11, 15, 0.10);
-  --shadow: rgba(11, 11, 15, 0.10);
-  --shadow-lg: rgba(11, 11, 15, 0.15);
-  /* The pink accent is removed. I've chosen a professional muted blue/gray as the new accent. 
-     This color is only used for very subtle interactive highlights. 
-     You can change it below to a neutral gray like #0b0b0f to make it truly black and white. */
-  --accent: #5c677d; /* a muted engineering blue/gray for subtle interactivity. Change this to #0b0b0f for pure B&W. */
-  --accent-2: #111827; /* almost black */
-  --good: #1ee3a6;
-  --bad: #ff5171;
-  --radius: 16px;
-  --radius-sm: 12px;
-  --max: 1100px;
+  --text: #111111;
+  --muted: #666666;
+  --border: #e5e5e5;
+  --radius: 12px;
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
 body {
   margin: 0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   color: var(--text);
-  background: var(--bg); /* clean white background, no pink gradients */
-  line-height: 1.45;
-  position: relative;
+  background: var(--bg);
+  line-height: 1.5;
 }
 
-/* Doodles overlay is removed completely */
-body::before { display: none; }
+.container { width: min(1100px, 90%); margin: 0 auto; }
 
-/* Keep all real content on top */
-body > * {
-  position: relative;
-  z-index: 1;
+/* HEADER & BRANDING */
+.site-header { padding: 50px 0 20px; }
+.header-inner { display: flex; justify-content: space-between; align-items: flex-start; }
+.brand-pic-group { display: flex; align-items: center; gap: 20px; }
+.brand-pic { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border); }
+.brand-name { font-size: 1.8rem; font-weight: 800; margin-bottom: 4px; }
+.brand-bio { margin: 0; color: var(--muted); font-size: 0.95rem; max-width: 280px; }
+
+.nav { display: flex; gap: 18px; margin-top: 10px; }
+.nav a { font-weight: 600; color: var(--muted); text-decoration: none; font-size: 0.9rem; }
+.nav a:hover, .nav a[aria-current="page"] { color: var(--text); }
+
+/* LAYOUT */
+.hero-split { display: grid; grid-template-columns: 1fr 380px; gap: 40px; padding: 40px 0; align-items: start; }
+
+/* LINK BOXES */
+.link-boxes { display: flex; gap: 12px; }
+.link-box {
+  display: flex; align-items: center; justify-content: center;
+  padding: 12px; border: 1px solid var(--border); border-radius: 10px;
+  background: #fff; text-decoration: none; color: var(--text); transition: 0.2s;
 }
+.link-box:hover { border-color: #000; background: #fafafa; transform: translateY(-2px); }
+.resume-btn { padding: 12px 20px; font-weight: 700; gap: 8px; font-size: 0.9rem; }
+.icon-black { width: 18px; height: 18px; filter: grayscale(1) brightness(0); }
 
-/* Tiny build badge (for debugging cache issues) */
-body[data-build]::after {
-  content: "build " attr(data-build);
-  position: fixed;
-  left: 10px;
-  bottom: 10px;
-  z-index: 5;
-  pointer-events: none;
-  font-size: 12px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.85);
-  color: rgba(17, 24, 39, 0.75);
-}
+/* SLIDERS */
+.slider-stack { display: flex; flex-direction: column; gap: 45px; }
+.mini-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #999; margin-bottom: -35px; }
 
-a { color: inherit; text-decoration: none; }
-a:hover { text-decoration: underline; }
-
-.container {
-  width: min(var(--max), calc(100% - 40px));
-  margin: 0 auto;
-}
-
-.skip-link {
-  position: absolute;
-  left: -9999px;
-  top: 8px;
-  background: var(--panel);
-  color: var(--text);
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-}
-.skip-link:focus { left: 12px; z-index: 1000; }
-
-/* =========================================
-   FLOATING HEADER & Brand Styling (Floating Toolbar)
-   ========================================= */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: transparent; /* Makes header background float and transparent */
-  border-bottom: none; /* Removes the horizontal line distraction */
-  padding: 10px 0; /* Simpler header padding */
+.carousel { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: #fff; }
+.carousel-viewport { height: 220px; overflow: hidden; background: #f9f9f9; position: relative; }
+.carousel-track { display: flex; height: 100%; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+.slide { min-width: 100%; height: 100%; position: relative; }
+.slide img { width: 100%; height: 100%; object-fit: cover; }
+.slide-info { 
+    position: absolute; bottom: 0; width: 100%; padding: 12px; 
+    background: linear-gradient(transparent, rgba(0,0,0,0.8)); 
+    color: #fff; font-size: 12px; font-weight: 700; 
 }
 
-/* The picture and name next to Home link in floating header */
-.brand-pic-group {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-weight: 750;
-  font-size: 1.1rem;
-}
+.carousel-footer { padding: 10px; display: flex; justify-content: center; border-top: 1px solid var(--border); }
+.dots { display: flex; gap: 6px; }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: #ddd; }
+.dot.active { background: #000; }
 
-.brand-pic {
-  width: 110px;
-  height: 110px;
-  border-radius: 50%; /* Makes the profile picture circular */
-  object-fit: cover;
-  border: 2px solid var(--bg); /* clean separation from background */
-  box-shadow: 0 5px 15px var(--shadow); /* subtle floating shadow for picture */
-  background: var(--bg); /* fallback if picture doesn't load */
-}
-
-.header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 8px 0; /* simple header padding */
-  pointer-events: none; /* let clicks go through transparent background */
-}
-.header-inner > * { pointer-events: auto; } /* let brand and nav items be clicked */
-
-.brand-name {
-  color: var(--text);
-  letter-spacing: 0.2px;
-}
-
-.nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  justify-content: flex-end;
-  pointer-events: auto;
-}
-.nav a {
-  padding: 8px 12px;
-  border-radius: 999px;
-  border: 1px solid transparent;
-  color: var(--muted);
-  font-weight: 600;
-  font-size: 0.95rem;
-}
-/* Active nav link style for a professional, black-and-white site */
-.nav a[aria-current="page"] {
-  color: var(--text);
-  border-color: var(--border);
-  background: rgba(11, 11, 15, 0.05); /* very subtle black tint for active link */
-}
-.nav a:hover {
-  text-decoration: none;
-  color: var(--text);
-  border-color: var(--border);
-  background: rgba(11, 11, 15, 0.03); /* very subtle hover */
-}
-
-.section { padding: 44px 0; }
-.section-hero { padding-top: 20px; } /* simpler padding for split hero layout */
-.section-head { margin-bottom: 18px; }
-.section-head h2 { margin: 0; font-size: 26px; letter-spacing: 0.2px; }
-.section-subtitle { margin: 6px 0 0; color: var(--muted); max-width: 70ch; }
-
-.hero {
-  display: grid;
-  grid-template-columns: 1.25fr 0.75fr;
-  gap: 18px;
-  align-items: start;
-}
-.hero-title { margin: 0; font-size: clamp(30px, 4vw, 44px); line-height: 1.08; letter-spacing: -0.4px; }
-.hero-lead { color: var(--muted); font-size: 16px; max-width: 75ch; margin: 10px 0 0; }
-.hero-cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
-.hero-meta { margin-top: 14px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 10px; }
-.hero-meta .meta-item {
-  border: 1px solid var(--border);
-  background: var(--panel-2); /* neutral light gray for professional tag styles */
-  border-radius: 999px;
-  padding: 6px 10px;
-  font-size: 13px;
-}
-
-.hero-card {
-  border: 1px solid var(--border);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(248, 249, 2fa, 0.85)); /* clean neutral light gradient, no pink glows */
-  box-shadow: 0 18px 45px var(--shadow);
-  border-radius: var(--radius);
-  padding: 14px;
-}
-.hero-card + .hero-card { margin-top: 12px; }
-.hero-card-title { font-weight: 700; letter-spacing: 0.2px; margin-bottom: 10px; }
-.hero-card-body { color: var(--muted); font-size: 14px; }
-
-/* =========================================
-   PROFESSIONAL BUTTONS (re-styled from pink)
-   ========================================= */
-.hero-actions {
-  display: flex;
-  gap: 16px;
-  margin-top: 20px;
-}
-
-.btn {
-  padding: 12px 24px;
-  border-radius: var(--radius-sm);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: all 0.2s ease;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-.btn-primary {
-  /* No pink gradient. Clean black button with white text. */
-  background: var(--accent-2); /* almost black */
-  color: #ffffff;
-  border: 2px solid var(--accent-2);
-}
-
-.btn-primary:hover {
-  background: transparent;
-  color: var(--accent-2);
-}
-
-.btn-outline {
-  /* Clean outlined button. No pink accent color is used here. */
-  border: 2px solid var(--border);
-  color: var(--text);
-  background: transparent;
-}
-
-.btn-outline:hover {
-  border-color: var(--accent-2); /* subtlety: changing border on hover, not color. Professional! */
-  background: rgba(11, 11, 15, 0.03); /* subtle hover */
-}
-
-/* Secondary button (like for 'Write-up' or internal mini links) uses neutral muted styles */
-.btn-secondary {
-  border: 1px solid var(--border);
-  background: rgba(11, 11, 15, 0.03);
-  color: var(--text);
-  border-radius: 12px;
-  padding: 8px 10px;
-  font-size: 13px;
-  user-select: none;
-}
-.btn-secondary:hover { background: rgba(11, 11, 15, 0.05); }
-
-.mini-link {
-  color: var(--muted);
-  font-size: 13px;
-  border: 1px solid var(--border);
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: rgba(11, 11, 15, 0.03);
-  text-decoration: none;
-}
-.mini-link:hover { color: var(--text); text-decoration: none; }
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 14px;
-}
-
-.home-split {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 18px;
-}
-.home-block {
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.85); /* clean white background */
-  border-radius: var(--radius);
-  padding: 14px;
-}
-.home-block-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-.home-block-head h3 { margin: 0; }
-
-.card {
-  grid-column: span 6;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.90); /* clean white background, no pink glows in card background gradients in card.Media etc. in card grid styles */
-  border-radius: var(--radius);
-  overflow: clip;
-  box-shadow: 0 18px 45px var(--shadow);
-}
-.card-inner { padding: 14px; }
-.card-title { font-weight: 750; margin: 0; letter-spacing: 0.2px; }
-.card-sub { margin: 6px 0 0; color: var(--muted); }
-.card-tags { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
-.tag {
-  font-size: 12px;
-  color: var(--muted);
-  border: 1px solid var(--border);
-  background: rgba(11, 11, 15, 0.03);
-  padding: 4px 8px;
-  border-radius: 999px;
-}
-
-.media {
-  background: rgba(11, 11, 15, 0.02);
-  border-bottom: 1px solid var(--border);
-}
-.media img, .media video {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-.media video { max-height: 420px; background: #000; }
-.media-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  padding: 10px;
-}
-.media-grid img, .media-grid video { border-radius: 12px; border: 1px solid var(--border); }
-
-.links { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 10px; }
-.links a {
-  font-size: 13px;
-  color: var(--text);
-  border: 1px solid var(--border);
-  padding: 8px 10px;
-  border-radius: 12px;
-  background: rgba(11, 11, 15, 0.03);
-}
-
-.articles-controls {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-
-.input {
-  width: min(520px, 100%);
-  padding: 10px 12px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: rgba(11, 11, 15, 0.03);
-  color: var(--text);
-  outline: none;
-}
-.input::placeholder { color: rgba(11, 11, 15, 0.45); }
-.input:focus { border-color: rgba(11, 11, 15, 0.4); box-shadow: 0 0 0 4px rgba(11, 11, 15, 0.06); }
-
-.chips { display: flex; flex-wrap: wrap; gap: 8px; }
-.chip {
-  border: 1px solid var(--border);
-  background: rgba(11, 11, 15, 0.03);
-  color: var(--muted);
-  padding: 6px 10px;
-  border-radius: 999px;
-  cursor: pointer;
-  font-size: 13px;
-  user-select: none;
-}
-/* tag chip active state uses neutral gray accent from root vars. No pink is used. */
-.chip[aria-pressed="true"] {
-  color: var(--text);
-  border-color: rgba(11, 11, 15, 0.3); /* subtly changing border on hover, not color. Professional! */
-  background: rgba(11, 11, 15, 0.08); /* subtle black tint for active link */
-}
-
-.articles {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 14px;
-}
-.article {
-  grid-column: span 12;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.90);
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: 0 18px 45px var(--shadow);
-}
-.article-head {
-  padding: 14px;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-}
-.article-title { margin: 0; font-weight: 760; }
-.article-date { color: var(--muted); font-size: 13px; white-space: nowrap; }
-.article-body { padding: 14px; color: var(--muted); }
-.article-body h4 { margin: 18px 0 8px; color: var(--text); }
-.article-body p { margin: 10px 0; }
-.article-body ul { margin: 10px 0; padding-left: 18px; }
-.article-body code {
-  background: rgba(11, 11, 15, 0.05);
-  border: 1px solid var(--border);
-  padding: 1px 6px;
-  border-radius: 8px;
-  color: var(--text);
-}
-
-.about {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 14px;
-}
-.about-card {
-  grid-column: span 4;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.90);
-  border-radius: var(--radius);
-  padding: 14px;
-  box-shadow: 0 18px 45px var(--shadow);
-}
-.about-card h3 { margin: 0 0 10px; }
-.pill-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.pill-list li {
-  border: 1px solid var(--border);
-  background: rgba(11, 11, 15, 0.03);
-  color: var(--muted);
-  padding: 6px 10px;
-  border-radius: 999px;
-  font-size: 13px;
-}
-.contact a { display: inline-block; margin-top: 6px; }
-.muted { color: var(--muted); }
-
-.site-footer {
-  border-top: 1px solid var(--border);
-  padding: 20px 0;
-  margin-top: 30px;
-  background: rgba(255, 255, 255, 0.70);
-}
-.footer-inner {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.skeleton {
-  border-radius: 8px;
-  background: linear-gradient(90deg, rgba(11,11,15,0.05), rgba(11,11,15,0.08), rgba(11,11,15,0.05));
-  background-size: 200% 100%;
-  animation: shimmer 1.2s infinite linear;
-  margin: 10px 0;
-}
-@keyframes shimmer {
-  0% { background-position: 0% 0; }
-  100% { background-position: 200% 0; }
-}
-
-@media (max-width: 920px) {
-  .hero { grid-template-columns: 1fr; }
-  .card { grid-column: span 12; }
-  .about-card { grid-column: span 12; }
-}
-
-@media (max-width: 520px) {
-  .media-grid { grid-template-columns: 1fr; }
-  .brand { min-width: 0; }
-  
-  /* Mobile header simplification for picture grouping */
-  .header-inner { flex-direction: column; gap: 10px; align-items: flex-start; }
-  .brand-pic-group { width: 100%; justify-content: flex-start; }
-  .nav { width: 100%; justify-content: flex-start; gap: 4px; }
-}
-
-/* Home carousel */
-.home-compact { padding: 20px 0 34px; }
-.carousel {
-  width: min(920px, 100%);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.90);
-  box-shadow: 0 18px 45px var(--shadow);
-  overflow: hidden;
-}
-.carousel-viewport {
-  position: relative;
-  overflow: hidden;
-  background: rgba(11, 11, 15, 0.02);
-}
-.carousel-track {
-  display: flex;
-  will-change: transform;
-  transition: transform 250ms ease;
-}
-.slide {
-  min-width: 100%;
-  display: grid;
-  grid-template-rows: auto 1fr;
-}
-.slide-media {
-  display: grid;
-  place-items: center;
-  background: rgba(11, 11, 15, 0.02);
-  border-bottom: 1px solid var(--border);
-}
-
-/* Videos don't stretch with object-fit: contain */
-.slide-media img,
-.slide-media video {
-  width: 100%;
-  height: auto;
-  display: block;
-  max-height: 420px;
-  object-fit: contain; 
-  background: #000;
-}
-
-.slide-info {
-  padding: 12px 14px;
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-}
-.slide-title { font-weight: 750; margin: 0; }
-.slide-type {
-  color: var(--muted);
-  font-size: 13px;
-  white-space: nowrap;
-}
-.carousel-controls {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 10px 12px;
-}
-.carousel-buttons {
-  display: flex;
-  gap: 8px;
-}
-.icon-btn {
-  border: 1px solid var(--border);
-  background: rgba(11, 11, 15, 0.03);
-  border-radius: 12px;
-  padding: 8px 10px;
-  cursor: pointer;
-  color: var(--text);
-}
-.icon-btn:hover { background: rgba(11, 11, 15, 0.05); }
-.dots { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: rgba(11, 11, 15, 0.08);
-}
-/* active dot state for black and white site uses subtle neutral gray accents. No pink is used. */
-.dot.active {
-  background: rgba(11, 11, 15, 0.15); /* subtle black tint for active dot */
-  border-color: rgba(11, 11, 15, 0.06); /* subtle border color change for professional look */
-}
-
-/* =========================================
-   NEW SPLIT HERO LAYOUT (Home Page)
-   ========================================= */
-.hero-split {
-  display: grid;
-  /* Gives the text more room, shrinks the slider column */
-  grid-template-columns: 1.3fr 0.7fr; 
-  gap: 40px;
-  align-items: center; 
-  min-height: 65vh;
-  margin-top: 20px;
-}
-
-.hero-pitch {
-  font-size: 1.1rem;
-  color: var(--muted);
-  line-height: 1.7;
-  margin-top: -10px;
-  margin-bottom: 30px;
-  max-width: 90%;
-}
-
-/* This pushes the slider all the way to the right side */
-.hero-visual {
-  display: flex;
-  justify-content: flex-end; 
-}
-
-/* Contain the slider and make it look like a sleek device */
-.hero-visual .carousel {
-  width: 100%;
-  max-width: 380px; /* <--- THIS SHRINKS IT A LOT! */
-  border-radius: var(--radius);
-  box-shadow: 0 20px 40px var(--shadow); 
-  background: var(--panel);
-  border: 1px solid var(--border);
-}
-
-/* Mobile Responsiveness: Stack them if screen is small (phones) */
-@media (max-width: 900px) {
-  .hero-split {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    text-align: center;
-  }
-  .hero-pitch {
-    max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .hero-actions {
-    justify-content: center;
-  }
-  .hero-meta {
-    justify-content: center;
-  }
-  .hero-visual {
-    justify-content: center; /* Centers it on mobile */
-  }
+@media (max-width: 850px) {
+  .hero-split { grid-template-columns: 1fr; }
+  .header-inner { flex-direction: column; gap: 30px; }
 }
