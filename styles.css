@@ -1,17 +1,14 @@
 :root {
   --bg: #ffffff;
   --panel: #ffffff;
-  --panel-2: #f8f9fa; /* neutral off-white/gray */
+  --panel-2: #f8f9fa;
   --text: #0b0b0f;
   --muted: rgba(11, 11, 15, 0.62);
   --border: rgba(11, 11, 15, 0.10);
   --shadow: rgba(11, 11, 15, 0.10);
   --shadow-lg: rgba(11, 11, 15, 0.15);
-  /* The pink accent is removed. I've chosen a professional muted blue/gray as the new accent. 
-     This color is only used for very subtle interactive highlights. 
-     You can change it below to a neutral gray like #0b0b0f to make it truly black and white. */
-  --accent: #5c677d; /* a muted engineering blue/gray for subtle interactivity. Change this to #0b0b0f for pure B&W. */
-  --accent-2: #111827; /* almost black */
+  --accent: #5c677d;
+  --accent-2: #111827;
   --good: #1ee3a6;
   --bad: #ff5171;
   --radius: 16px;
@@ -25,35 +22,12 @@ body {
   margin: 0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
   color: var(--text);
-  background: var(--bg); /* clean white background, no pink gradients */
+  background: var(--bg);
   line-height: 1.45;
-  position: relative;
 }
 
-/* Doodles overlay is removed completely */
 body::before { display: none; }
-
-/* Keep all real content on top */
-body > * {
-  position: relative;
-  z-index: 1;
-}
-
-/* Tiny build badge (for debugging cache issues) */
-body[data-build]::after {
-  content: "build " attr(data-build);
-  position: fixed;
-  left: 10px;
-  bottom: 10px;
-  z-index: 5;
-  pointer-events: none;
-  font-size: 12px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.85);
-  color: rgba(17, 24, 39, 0.75);
-}
+body > * { position: relative; z-index: 1; }
 
 a { color: inherit; text-decoration: none; }
 a:hover { text-decoration: underline; }
@@ -76,18 +50,18 @@ a:hover { text-decoration: underline; }
 .skip-link:focus { left: 12px; z-index: 1000; }
 
 /* =========================================
-   FLOATING HEADER & Brand Styling (Floating Toolbar)
+   HEADER - Fixed positioning
    ========================================= */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: transparent; /* Makes header background float and transparent */
-  border-bottom: none; /* Removes the horizontal line distraction */
-  padding: 10px 0; /* Simpler header padding */
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 0;
 }
 
-/* The picture and name next to Home link in floating header */
 .brand-pic-group {
   display: flex;
   align-items: center;
@@ -97,13 +71,13 @@ a:hover { text-decoration: underline; }
 }
 
 .brand-pic {
-  width: 110px;
-  height: 110px;
-  border-radius: 50%; /* Makes the profile picture circular */
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
   object-fit: cover;
-  border: 2px solid var(--bg); /* clean separation from background */
-  box-shadow: 0 5px 15px var(--shadow); /* subtle floating shadow for picture */
-  background: var(--bg); /* fallback if picture doesn't load */
+  border: 2px solid var(--bg);
+  box-shadow: 0 2px 8px var(--shadow);
+  background: var(--bg);
 }
 
 .header-inner {
@@ -111,14 +85,13 @@ a:hover { text-decoration: underline; }
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 8px 0; /* simple header padding */
-  pointer-events: none; /* let clicks go through transparent background */
 }
-.header-inner > * { pointer-events: auto; } /* let brand and nav items be clicked */
 
 .brand-name {
   color: var(--text);
   letter-spacing: 0.2px;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 .nav {
@@ -126,7 +99,6 @@ a:hover { text-decoration: underline; }
   flex-wrap: wrap;
   gap: 6px;
   justify-content: flex-end;
-  pointer-events: auto;
 }
 .nav a {
   padding: 8px 12px;
@@ -136,80 +108,108 @@ a:hover { text-decoration: underline; }
   font-weight: 600;
   font-size: 0.95rem;
 }
-/* Active nav link style for a professional, black-and-white site */
 .nav a[aria-current="page"] {
   color: var(--text);
   border-color: var(--border);
-  background: rgba(11, 11, 15, 0.05); /* very subtle black tint for active link */
+  background: rgba(11, 11, 15, 0.05);
 }
 .nav a:hover {
   text-decoration: none;
   color: var(--text);
   border-color: var(--border);
-  background: rgba(11, 11, 15, 0.03); /* very subtle hover */
+  background: rgba(11, 11, 15, 0.03);
 }
 
-.section { padding: 44px 0; }
-.section-hero { padding-top: 20px; } /* simpler padding for split hero layout */
-.section-head { margin-bottom: 18px; }
-.section-head h2 { margin: 0; font-size: 26px; letter-spacing: 0.2px; }
-.section-subtitle { margin: 6px 0 0; color: var(--muted); max-width: 70ch; }
+/* Header buttons */
+.header-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  background: #f5f5f5;
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 12px;
+  transition: all 0.2s ease;
+  border: 1px solid #e0e0e0;
+}
 
-.hero {
+.header-btn:hover {
+  background: #e8e8e8;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.header-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Sections */
+.section { 
+  padding: 30px 0; 
+}
+.section-head { 
+  margin-bottom: 18px; 
+}
+.section-head h2 { 
+  margin: 0; 
+  font-size: 26px; 
+  letter-spacing: 0.2px; 
+}
+.section-subtitle { 
+  margin: 6px 0 0; 
+  color: var(--muted); 
+  max-width: 70ch; 
+}
+
+/* Hero Split Layout */
+.hero-split {
   display: grid;
-  grid-template-columns: 1.25fr 0.75fr;
-  gap: 18px;
-  align-items: start;
-}
-.hero-title { margin: 0; font-size: clamp(30px, 4vw, 44px); line-height: 1.08; letter-spacing: -0.4px; }
-.hero-lead { color: var(--muted); font-size: 16px; max-width: 75ch; margin: 10px 0 0; }
-.hero-cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
-.hero-meta { margin-top: 14px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 10px; }
-.hero-meta .meta-item {
-  border: 1px solid var(--border);
-  background: var(--panel-2); /* neutral light gray for professional tag styles */
-  border-radius: 999px;
-  padding: 6px 10px;
-  font-size: 13px;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 40px;
+  align-items: center;
+  margin-top: 0;
+  padding: 20px 0;
 }
 
-.hero-card {
-  border: 1px solid var(--border);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(248, 249, 2fa, 0.85)); /* clean neutral light gradient, no pink glows */
-  box-shadow: 0 18px 45px var(--shadow);
-  border-radius: var(--radius);
-  padding: 14px;
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
-.hero-card + .hero-card { margin-top: 12px; }
-.hero-card-title { font-weight: 700; letter-spacing: 0.2px; margin-bottom: 10px; }
-.hero-card-body { color: var(--muted); font-size: 14px; }
 
-/* =========================================
-   PROFESSIONAL BUTTONS (re-styled from pink)
-   ========================================= */
+.hero-pitch {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 10px 0;
+}
+
 .hero-actions {
   display: flex;
   gap: 16px;
-  margin-top: 20px;
+  margin-top: 16px;
 }
 
 .btn {
-  padding: 12px 24px;
+  padding: 10px 20px;
   border-radius: var(--radius-sm);
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   transition: all 0.2s ease;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .btn-primary {
-  /* No pink gradient. Clean black button with white text. */
-  background: var(--accent-2); /* almost black */
+  background: var(--accent-2);
   color: #ffffff;
   border: 2px solid var(--accent-2);
 }
@@ -220,288 +220,58 @@ a:hover { text-decoration: underline; }
 }
 
 .btn-outline {
-  /* Clean outlined button. No pink accent color is used here. */
   border: 2px solid var(--border);
   color: var(--text);
   background: transparent;
 }
 
 .btn-outline:hover {
-  border-color: var(--accent-2); /* subtlety: changing border on hover, not color. Professional! */
-  background: rgba(11, 11, 15, 0.03); /* subtle hover */
-}
-
-/* Secondary button (like for 'Write-up' or internal mini links) uses neutral muted styles */
-.btn-secondary {
-  border: 1px solid var(--border);
+  border-color: var(--accent-2);
   background: rgba(11, 11, 15, 0.03);
-  color: var(--text);
-  border-radius: 12px;
-  padding: 8px 10px;
-  font-size: 13px;
-  user-select: none;
-}
-.btn-secondary:hover { background: rgba(11, 11, 15, 0.05); }
-
-.mini-link {
-  color: var(--muted);
-  font-size: 13px;
-  border: 1px solid var(--border);
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: rgba(11, 11, 15, 0.03);
-  text-decoration: none;
-}
-.mini-link:hover { color: var(--text); text-decoration: none; }
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 14px;
 }
 
-.home-split {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 18px;
-}
-.home-block {
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.85); /* clean white background */
-  border-radius: var(--radius);
-  padding: 14px;
-}
-.home-block-head {
+/* Hero Visual - Right side carousel */
+.hero-visual {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-.home-block-head h3 { margin: 0; }
-
-.card {
-  grid-column: span 6;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.90); /* clean white background, no pink glows in card background gradients in card.Media etc. in card grid styles */
-  border-radius: var(--radius);
-  overflow: clip;
-  box-shadow: 0 18px 45px var(--shadow);
-}
-.card-inner { padding: 14px; }
-.card-title { font-weight: 750; margin: 0; letter-spacing: 0.2px; }
-.card-sub { margin: 6px 0 0; color: var(--muted); }
-.card-tags { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
-.tag {
-  font-size: 12px;
-  color: var(--muted);
-  border: 1px solid var(--border);
-  background: rgba(11, 11, 15, 0.03);
-  padding: 4px 8px;
-  border-radius: 999px;
+  justify-content: flex-end;
 }
 
-.media {
-  background: rgba(11, 11, 15, 0.02);
-  border-bottom: 1px solid var(--border);
-}
-.media img, .media video {
-  display: block;
+.hero-visual .carousel {
   width: 100%;
-  height: auto;
-}
-.media video { max-height: 420px; background: #000; }
-.media-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  padding: 10px;
-}
-.media-grid img, .media-grid video { border-radius: 12px; border: 1px solid var(--border); }
-
-.links { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 10px; }
-.links a {
-  font-size: 13px;
-  color: var(--text);
-  border: 1px solid var(--border);
-  padding: 8px 10px;
-  border-radius: 12px;
-  background: rgba(11, 11, 15, 0.03);
-}
-
-.articles-controls {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-
-.input {
-  width: min(520px, 100%);
-  padding: 10px 12px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: rgba(11, 11, 15, 0.03);
-  color: var(--text);
-  outline: none;
-}
-.input::placeholder { color: rgba(11, 11, 15, 0.45); }
-.input:focus { border-color: rgba(11, 11, 15, 0.4); box-shadow: 0 0 0 4px rgba(11, 11, 15, 0.06); }
-
-.chips { display: flex; flex-wrap: wrap; gap: 8px; }
-.chip {
-  border: 1px solid var(--border);
-  background: rgba(11, 11, 15, 0.03);
-  color: var(--muted);
-  padding: 6px 10px;
-  border-radius: 999px;
-  cursor: pointer;
-  font-size: 13px;
-  user-select: none;
-}
-/* tag chip active state uses neutral gray accent from root vars. No pink is used. */
-.chip[aria-pressed="true"] {
-  color: var(--text);
-  border-color: rgba(11, 11, 15, 0.3); /* subtly changing border on hover, not color. Professional! */
-  background: rgba(11, 11, 15, 0.08); /* subtle black tint for active link */
-}
-
-.articles {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 14px;
-}
-.article {
-  grid-column: span 12;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.90);
+  max-width: 380px;
   border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: 0 18px 45px var(--shadow);
-}
-.article-head {
-  padding: 14px;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-}
-.article-title { margin: 0; font-weight: 760; }
-.article-date { color: var(--muted); font-size: 13px; white-space: nowrap; }
-.article-body { padding: 14px; color: var(--muted); }
-.article-body h4 { margin: 18px 0 8px; color: var(--text); }
-.article-body p { margin: 10px 0; }
-.article-body ul { margin: 10px 0; padding-left: 18px; }
-.article-body code {
-  background: rgba(11, 11, 15, 0.05);
+  box-shadow: 0 20px 40px var(--shadow);
+  background: var(--panel);
   border: 1px solid var(--border);
-  padding: 1px 6px;
-  border-radius: 8px;
-  color: var(--text);
 }
 
-.about {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 14px;
-}
-.about-card {
-  grid-column: span 4;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.90);
-  border-radius: var(--radius);
-  padding: 14px;
-  box-shadow: 0 18px 45px var(--shadow);
-}
-.about-card h3 { margin: 0 0 10px; }
-.pill-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.pill-list li {
-  border: 1px solid var(--border);
-  background: rgba(11, 11, 15, 0.03);
-  color: var(--muted);
-  padding: 6px 10px;
-  border-radius: 999px;
-  font-size: 13px;
-}
-.contact a { display: inline-block; margin-top: 6px; }
-.muted { color: var(--muted); }
-
-.site-footer {
-  border-top: 1px solid var(--border);
-  padding: 20px 0;
-  margin-top: 30px;
-  background: rgba(255, 255, 255, 0.70);
-}
-.footer-inner {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.skeleton {
-  border-radius: 8px;
-  background: linear-gradient(90deg, rgba(11,11,15,0.05), rgba(11,11,15,0.08), rgba(11,11,15,0.05));
-  background-size: 200% 100%;
-  animation: shimmer 1.2s infinite linear;
-  margin: 10px 0;
-}
-@keyframes shimmer {
-  0% { background-position: 0% 0; }
-  100% { background-position: 200% 0; }
-}
-
-@media (max-width: 920px) {
-  .hero { grid-template-columns: 1fr; }
-  .card { grid-column: span 12; }
-  .about-card { grid-column: span 12; }
-}
-
-@media (max-width: 520px) {
-  .media-grid { grid-template-columns: 1fr; }
-  .brand { min-width: 0; }
-  
-  /* Mobile header simplification for picture grouping */
-  .header-inner { flex-direction: column; gap: 10px; align-items: flex-start; }
-  .brand-pic-group { width: 100%; justify-content: flex-start; }
-  .nav { width: 100%; justify-content: flex-start; gap: 4px; }
-}
-
-/* Home carousel */
-.home-compact { padding: 20px 0 34px; }
+/* Carousel */
 .carousel {
-  width: min(920px, 100%);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: rgba(255, 255, 255, 0.90);
   box-shadow: 0 18px 45px var(--shadow);
   overflow: hidden;
 }
+
 .carousel-viewport {
   position: relative;
   overflow: hidden;
   background: rgba(11, 11, 15, 0.02);
 }
+
 .carousel-track {
   display: flex;
   will-change: transform;
   transition: transform 250ms ease;
 }
+
 .slide {
   min-width: 100%;
   display: grid;
   grid-template-rows: auto 1fr;
 }
+
 .slide-media {
   display: grid;
   place-items: center;
@@ -509,14 +279,13 @@ a:hover { text-decoration: underline; }
   border-bottom: 1px solid var(--border);
 }
 
-/* Videos don't stretch with object-fit: contain */
 .slide-media img,
 .slide-media video {
   width: 100%;
   height: auto;
   display: block;
-  max-height: 420px;
-  object-fit: contain; 
+  max-height: 160px;
+  object-fit: contain;
   background: #000;
 }
 
@@ -527,12 +296,19 @@ a:hover { text-decoration: underline; }
   justify-content: space-between;
   gap: 12px;
 }
-.slide-title { font-weight: 750; margin: 0; }
+
+.slide-title {
+  font-weight: 750;
+  margin: 0;
+  font-size: 14px;
+}
+
 .slide-type {
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
   white-space: nowrap;
 }
+
 .carousel-controls {
   display: flex;
   align-items: center;
@@ -540,20 +316,33 @@ a:hover { text-decoration: underline; }
   gap: 10px;
   padding: 10px 12px;
 }
+
 .carousel-buttons {
   display: flex;
   gap: 8px;
 }
+
 .icon-btn {
   border: 1px solid var(--border);
   background: rgba(11, 11, 15, 0.03);
-  border-radius: 12px;
-  padding: 8px 10px;
+  border-radius: 8px;
+  padding: 6px 12px;
   cursor: pointer;
   color: var(--text);
+  font-size: 12px;
 }
-.icon-btn:hover { background: rgba(11, 11, 15, 0.05); }
-.dots { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+
+.icon-btn:hover {
+  background: rgba(11, 11, 15, 0.05);
+}
+
+.dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
 .dot {
   width: 8px;
   height: 8px;
@@ -561,217 +350,131 @@ a:hover { text-decoration: underline; }
   border: 1px solid var(--border);
   background: rgba(11, 11, 15, 0.08);
 }
-/* active dot state for black and white site uses subtle neutral gray accents. No pink is used. */
+
 .dot.active {
-  background: rgba(11, 11, 15, 0.15); /* subtle black tint for active dot */
-  border-color: rgba(11, 11, 15, 0.06); /* subtle border color change for professional look */
+  background: rgba(11, 11, 15, 0.15);
+  border-color: rgba(11, 11, 15, 0.06);
 }
 
-/* =========================================
-   NEW SPLIT HERO LAYOUT (Home Page)
-   ========================================= */
-.hero-split {
-  display: grid;
-  /* Gives the text more room, shrinks the slider column */
-  grid-template-columns: 1.3fr 0.7fr; 
-  gap: 40px;
-  align-items: center; 
-  min-height: 65vh;
-  margin-top: 20px;
+/* Hide old elements */
+.hero-linkboxes,
+#heroMeta,
+.hero-meta {
+  display: none;
 }
 
-.hero-pitch {
-  font-size: 1.1rem;
-  color: var(--muted);
-  line-height: 1.7;
-  margin-top: -10px;
-  margin-bottom: 30px;
-  max-width: 90%;
+/* Footer */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 20px 0;
+  margin-top: 30px;
+  background: rgba(255, 255, 255, 0.95);
 }
 
-/* This pushes the slider all the way to the right side */
-.hero-visual {
+.footer-inner {
   display: flex;
-  justify-content: flex-end; 
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-/* Contain the slider and make it look like a sleek device */
-.hero-visual .carousel {
-  width: 100%;
-  max-width: 380px; 
-  max-height: 320px;/* <--- THIS SHRINKS IT A LOT! */
-  border-radius: var(--radius);
-  box-shadow: 0 20px 40px var(--shadow); 
-  background: var(--panel);
+.muted {
+  color: var(--muted);
+}
+
+/* Grid for projects */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px;
+}
+
+.card {
+  grid-column: span 6;
   border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.90);
+  border-radius: var(--radius);
+  overflow: clip;
+  box-shadow: 0 18px 45px var(--shadow);
 }
 
-/* Mobile Responsiveness: Stack them if screen is small (phones) */
+.card-inner {
+  padding: 14px;
+}
+
+.card-title {
+  font-weight: 750;
+  margin: 0;
+  letter-spacing: 0.2px;
+}
+
+.card-sub {
+  margin: 6px 0 0;
+  color: var(--muted);
+}
+
+.card-tags {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  font-size: 12px;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  background: rgba(11, 11, 15, 0.03);
+  padding: 4px 8px;
+  border-radius: 999px;
+}
+
+/* Responsive */
 @media (max-width: 900px) {
   .hero-split {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 30px;
     text-align: center;
   }
+  
   .hero-pitch {
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
   }
+  
   .hero-actions {
     justify-content: center;
   }
-  .hero-meta {
+  
+  .hero-visual {
     justify-content: center;
   }
-  .hero-visual {
-    justify-content: center; /* Centers it on mobile */
+  
+  .card {
+    grid-column: span 12;
   }
 }
-/* NEW BUTTON STYLES - Add this at the end of your CSS file */
-.btn-icon {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
-  border-radius: 8px;
-  background: #f5f5f5;
-  color: #333;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 14px;
-  transition: all 0.2s ease;
-  border: 1px solid #e0e0e0;
-}
 
-.btn-icon:hover {
-  background: #e8e8e8;
-  text-decoration: none;
-  transform: translateY(-1px);
-}
-
-.btn-icon svg {
-  width: 18px;
-  height: 18px;
-}
-
-/* Hide the old elements */
-.hero-linkboxes {
-  display: none;
-}
-
-#heroMeta {
-  display: none;
-}
-
-/* Adjust spacing for hero-text */
-.hero-text {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.hero-pitch {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.hero-actions {
-  margin-top: 8px;
-}
-/* Header buttons under profile picture */
-.header-buttons {
-  display: flex;
-  gap: 8px;
-  margin-top: 8px;
-  justify-content: center;
-}
-
-.header-icon-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: #f5f5f5;
-  color: #333;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  border: 1px solid #e0e0e0;
-}
-
-.header-icon-btn:hover {
-  background: #e8e8e8;
-  transform: translateY(-1px);
-  text-decoration: none;
-}
-
-.header-icon-btn svg {
-  width: 16px;
-  height: 16px;
-}
-/* Header buttons - rectangular style like before */
-.header-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
-  border-radius: 8px;
-  background: #f5f5f5;
-  color: #333;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 13px;
-  transition: all 0.2s ease;
-  border: 1px solid #e0e0e0;
-}
-
-.header-btn:hover {
-  background: #e8e8e8;
-  text-decoration: none;
-  transform: translateY(-1px);
-}
-
-.header-btn svg {
-  width: 16px;
-  height: 16px;
-}
-/* Header buttons - rectangular style */
-.header-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
-  border-radius: 8px;
-  background: #f5f5f5;
-  color: #333;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 13px;
-  transition: all 0.2s ease;
-  border: 1px solid #e0e0e0;
-}
-
-.header-btn:hover {
-  background: #e8e8e8;
-  text-decoration: none;
-  transform: translateY(-1px);
-}
-
-.header-btn svg {
-  width: 16px;
-  height: 16px;
-}
-
-/* Make slideshow shorter */
-.slide-media img,
-.slide-media video {
-  max-height: 160px !important;
-}
-
-/* Make slideshow shorter */
-.slide-media img,
-.slide-media video {
-  max-height: 160px !important;
+@media (max-width: 520px) {
+  .header-inner {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  
+  .brand-pic-group {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .nav {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 4px;
+  }
+  
+  .hero-visual .carousel {
+    max-width: 100%;
+  }
 }
