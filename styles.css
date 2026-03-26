@@ -482,6 +482,25 @@ a:hover { text-decoration: underline; }
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 2px;
 }
+/* =========================================
+   ARTICLE MEDIA - Fixes enlarged images on Learning page
+   ========================================= */
+.article .media {
+  width: 100%;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  background: rgba(11, 11, 15, 0.02);
+}
+
+.article .media img,
+.article .media video {
+  width: 100%;          /* Shrinks to fit the article container */
+  height: auto;         /* Keeps aspect ratio */
+  max-height: 300px;    /* Prevents it from getting too tall */
+  object-fit: contain;  /* Ensures the whole image is visible */
+  display: block;
+  background: #000;
+}
 
 @media (max-width: 520px) {
   .header-inner {
